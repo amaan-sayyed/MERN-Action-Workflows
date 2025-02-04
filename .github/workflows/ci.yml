@@ -54,19 +54,19 @@ jobs:
 
       - name: Copy Docker Compose file to EC2
         run: |
-          scp -o StrictHostKeyChecking=no docker-compose.yml ubuntu@${{ secrets.EC2_HOST }}:/home/ubuntu/docker-compose.yml
+          scp -o StrictHostKeyChecking=no docker-compose.yaml ubuntu@${{ secrets.EC2_HOST }}:/home/ubuntu/docker-compose.yaml
     
       - name: Stop existing containers
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} "docker-compose -f /home/ubuntu/docker-compose.yml down"
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} "docker-compose -f /home/ubuntu/docker-compose.yaml down"
     
       - name: Pull latest Docker images
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} "docker-compose -f /home/ubuntu/docker-compose.yml pull"
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} "docker-compose -f /home/ubuntu/docker-compose.yaml pull"
               
       - name: Start containers with Docker Compose
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} "docker-compose -f /home/ubuntu/docker-compose.yml up -d"
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} "docker-compose -f /home/ubuntu/docker-compose.yaml up -d"
       
 
       
